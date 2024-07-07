@@ -10,16 +10,35 @@
         margin: 8px 20px 5px 20px;
 
         div {
-            span {
+            input {
+                width: 100%;
                 font-weight: bold;
+                border: none;
+                background-color: transparent;
+            }
+
+            input:focus {
+                outline: none;
             }
         }
     }
 
     div {
         .description{
+            display: block;
             min-height: 350px;
-            margin: 8px 20px 5px 20px;
+            margin: 8px 27px 5px 20px;
+
+            textarea{
+                width: 100%;
+                min-height: 350px;
+                resize: none;
+                border: none;
+            }
+
+            textarea:focus{
+                outline: none;
+            }
         }
 
         .footer{
@@ -32,6 +51,7 @@
             .options{
                 display: flex;
                 flex-direction: row;
+                align-items: center;
 
                 div:nth-child(2) {
                     margin-left: 10px;

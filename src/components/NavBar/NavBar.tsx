@@ -19,7 +19,7 @@ const NavBar = (props: Props) => {
             <input placeholder='Pesquisas notas' type="text" />
         </div>
         <div className='x'>
-            <span>X</span>
+            <img src="close.png" onClick={() => window.location.reload()} alt="" />
         </div>
     </header>
   )
