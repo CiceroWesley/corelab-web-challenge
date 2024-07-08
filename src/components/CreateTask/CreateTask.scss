@@ -29,14 +29,14 @@
             min-height: 60px;
             margin: 8px 27px 5px 20px;
 
-            textarea{
+            input{
                 width: 100%;
                 min-height: 60px;
                 resize: none;
                 border: none;
             }
 
-            textarea:focus{
+            input:focus{
                 outline: none;
             }
         }

@@ -1,11 +1,11 @@
 import React, { useState } from 'react'
 import './Task.scss';
 import CoolorsTab from '../CoolorsTab/CoolorsTab';
+import { TaskType } from '../../types/Task';
 
 
-type Props = {}
 
-const Task = (props: Props) => {
+const Task = (props: TaskType) => {
     const [backet, setBacket] = useState(false);
     const [color, setColor] = useState<string>('#FFFFFF')
 
@@ -19,6 +19,7 @@ const Task = (props: Props) => {
             <div className='header'>
                 <div>
                     <input type="text" placeholder='Titulo' />
+                    {props.title}
                 </div>
                 <div>
                     <img src="star.png" alt="star icon" />
