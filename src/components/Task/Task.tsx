@@ -7,28 +7,25 @@ import { TaskType } from '../../types/Task';
 
 const Task = (props: TaskType) => {
     const [backet, setBacket] = useState(false);
-    const [color, setColor] = useState<string>('#FFFFFF')
-
-    if(color){
-        console.log(color)
-    }
+    const [color, setColor] = useState<string>('#FFFFFF');
+    const [favorite, setFavorite] = useState<boolean>(false)
     
   return (
     <>
         <div style={{backgroundColor: color}} className='task'>
             <div className='header'>
                 <div>
-                    <input type="text" placeholder='Titulo' />
-                    {props.title}
+                    <input type="text" placeholder='Titulo' value={props.title} />
                 </div>
                 <div>
-                    <img src="star.png" alt="star icon" />
+                    {!props.favorite && <img src="star.png" alt="star icon" onClick={() => setFavorite(true)} />}
+                    {props.favorite && <img src="starActive.png" alt="star icon" onClick={() => setFavorite(false)}/>}
                 </div>
             </div>
             <hr />
             <div>
                 <div className='description'>
-                    <textarea placeholder='Descrição' style={{backgroundColor: color}} name="" id=""></textarea>
+                    <textarea value={props.description} placeholder='Descrição' style={{backgroundColor: color}} name="" id=""></textarea>
                 </div>
                 <div className='footer'>
                     <div className='options'>
@@ -36,7 +33,7 @@ const Task = (props: TaskType) => {
                             <img src="pencil.png" alt="pencil icone" />
                         </div>
                         <div>
-                            <img onClick={() => setBacket(!backet)} src='backet.png' style={backet ? {backgroundColor: '#FFE3B3', borderRadius:'50%', padding: '2px'} : {}} alt="" />
+                            <img onClick={() => setBacket(!backet)} src='backet.png' style={backet ? {backgroundColor: `${props.color}`, borderRadius:'50%', padding: '2px'} : {}} alt="" />
                         </div>
                     </div>
                     <div>
@@ -44,9 +41,9 @@ const Task = (props: TaskType) => {
                     </div>
                 </div>
             </div>
-        
+            <div className='color'>{backet && <CoolorsTab setColor={setColor}/>}</div>
         </div>
-        {backet && <CoolorsTab setColor={setColor}/>}
+        
     </>
   )
 }

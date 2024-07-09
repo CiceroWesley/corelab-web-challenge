@@ -7,6 +7,7 @@ type Props = {}
 const CreateTask = (props: Props) => {
     const [title, setTitle] = useState<string>('');
     const [description, setDescription] = useState<string>('');
+    const [favorite, setFavorite] = useState<boolean>(false)
     const [loading, setLoading] = useState<boolean>(false);
     const [feedBack, setFeedBack] = useState<string>('');
 
@@ -16,7 +17,8 @@ const CreateTask = (props: Props) => {
 
         const task = {
             title,
-            description
+            description,
+            favorite
         }
 
         try {
@@ -45,7 +47,8 @@ const CreateTask = (props: Props) => {
                         <input type="text" value={title} onChange={(e: React.ChangeEvent<HTMLInputElement>) => setTitle(e.target.value)} placeholder='Titulo' />
                     </div>
                     <div>
-                        <img src="star.png" alt="star icon" />
+                        {!favorite && <img src="star.png" alt="star icon" onClick={() => setFavorite(true)} />}
+                        {favorite && <img src="starActive.png" alt="star icon" onClick={() => setFavorite(false)}/>}
                     </div>
                 </div>
                 <hr />

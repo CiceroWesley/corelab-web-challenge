@@ -1,10 +1,20 @@
-import React from 'react'
+import React, { useState } from 'react'
 import './NavBar.scss';
 
 
-type Props = {}
+type Props = {
+    handleTask: (q: string) => void,
+}
 
-const NavBar = (props: Props) => {
+const NavBar = ({handleTask}: Props) => {
+    const [search, setSearch] = useState<string>('');
+
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const query = e.target.value;
+        setSearch(query);
+        handleTask(query);
+    }
+
   return (
     <header className='header'>
         <div className='iconAndText'>
@@ -16,7 +26,7 @@ const NavBar = (props: Props) => {
             </div>
         </div>
         <div className='searchNotes'>
-            <input placeholder='Pesquisas notas' type="text" />
+            <input placeholder='Pesquisas notas' type="text" value={search} onChange={handleChange}/>
         </div>
         <div className='x'>
             <img src="close.png" onClick={() => window.location.reload()} alt="" />
