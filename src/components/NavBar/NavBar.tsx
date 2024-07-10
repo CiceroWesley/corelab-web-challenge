@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import './NavBar.scss';
+import { AxiosInstance } from '../../utils/Axios';
 
 
 type Props = {
@@ -13,6 +14,19 @@ const NavBar = ({handleTask}: Props) => {
         const query = e.target.value;
         setSearch(query);
         handleTask(query);
+    }
+    
+    const handleDelete = async () => {
+        try {
+            const response = await AxiosInstance.delete(`/tasks`);
+            if(response.data){
+                location.reload()
+                alert('Tarefas excluidas');
+            }
+        } catch (error) {
+            console.log('Erro ao excluir tarefas')
+            location.reload()
+        }
     }
 
   return (
@@ -28,8 +42,8 @@ const NavBar = ({handleTask}: Props) => {
         <div className='searchNotes'>
             <input placeholder='Pesquisas notas' type="text" value={search} onChange={handleChange}/>
         </div>
-        <div className='x'>
-            <img src="close.png" onClick={() => window.location.reload()} alt="" />
+        <div className='x' onClick={() => handleDelete()}>
+            <img src="close.png"  alt="" />
         </div>
     </header>
   )

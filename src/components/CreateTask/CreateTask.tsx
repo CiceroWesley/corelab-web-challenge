@@ -25,6 +25,10 @@ const CreateTask = (props: Props) => {
             const response = await AxiosInstance.post('task', task);
 
             if(response.data){
+                setTitle('');
+                setDescription('');
+                setFavorite(false);
+                location.reload()
                 alert('Tarefa criada com sucesso')
                 // setFeedBack('Tarefa criada com sucesso');
 
